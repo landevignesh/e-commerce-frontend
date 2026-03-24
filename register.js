@@ -1,7 +1,9 @@
+import login, { handelLoginbind } from "./login.js"
 const register=()=>{
     return `
       <div class="registration-page">
-        <form action="">
+        
+        <form action="" style="padding-bottom: 20px; height:520px;">
             <h1>Register</h1>
             <div>
                 <input type="text" name="name" placeholder="Name">
@@ -30,6 +32,9 @@ const register=()=>{
             <div>
                 <button id="submit">Submit</button>
             </div>
+            <div style="display: flex; align-items: center; justify-content: center; color: black; font-weight: 600;">
+              Already Have an account? <a href="#" id="login-link">Login</a>
+          </div>
         </form>
     </div>
     `
@@ -45,6 +50,12 @@ const form=document.querySelector('form')
 const inputs=document.querySelectorAll('input')
 const textArea=document.querySelector('textarea')
 
+document.querySelector('#login-link').addEventListener('click', (e) => {
+    e.preventDefault()
+    history.pushState({}, "", "/login")
+    root.innerHTML = login()
+    handelLoginbind()
+})
 
 function handelChnage(e){
 let {name,value,files}=e.target

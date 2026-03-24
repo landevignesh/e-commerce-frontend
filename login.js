@@ -1,4 +1,5 @@
 import home from "./home.js"
+import register, { handleRegistrationBind } from "./register.js"
 const login=()=>{
     return `
     <div class="login-page">
@@ -22,12 +23,13 @@ const login=()=>{
                 <button id="submit">Submit</button>
             </div>
             <div style="align-items: center; justify-content: center; color: black; font-weight: 600; ">
-                Dont Have an account? Register
+                Dont Have an account? <a href="#" id="register-link">Register</a>
             </div>
         </form>
     </div>
     `
 }
+
 export let handelLoginbind=()=>{
         const state={
   setState(name,value){
@@ -36,6 +38,14 @@ export let handelLoginbind=()=>{
 }
 const form=document.querySelector('form')
 const inputs=document.querySelectorAll('input')
+
+document.querySelector('#register-link').addEventListener('click', (e) => {
+    e.preventDefault()
+    history.pushState({}, "", "/register")
+    root.innerHTML = register()
+    handleRegistrationBind()
+})
+
 function handelChnage(e){
     let {name,value}=e.target
     state.setState(name,value)
